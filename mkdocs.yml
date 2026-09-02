@@ -1,0 +1,74 @@
+site_name: HexaMSH Documentation
+site_description: HexaMSH is a Python library for generating hexahedral meshes using Gmsh and OpenCASCADE. It provides a high-level interface for creating and manipulating meshes, making it easier for users to generate complex meshes for their simulations.
+site_author: DORD/PM/ZEU/SIM
+site_url: https://michelin.github.io/HexaMSH/
+repo_url: https://github.com/michelin/HexaMSH
+repo_name: michelin/HexaMSH
+ 
+
+markdown_extensions:
+  - pymdownx.snippets
+  - attr_list
+  - admonition
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js  
+
+
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/solid/book
+  features:
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - navigation.expand
+    - content.code.annotate 
+    - content.code.select
+    - content.code.copy
+    - content.tabs.link
+    - search.suggest
+    - search.highlight
+    - search.share
+    - header.autohide
+  palette:
+    # Palette toggle for light mode
+    - scheme: blue_color
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode    
+        
+copyright: Michelin 2026
+
+plugins:
+  - awesome-pages
+  - search:
+      lang:
+        - en
+
+
+

@@ -1,0 +1,17 @@
+gmsh
+numpy
+click
+scipy
+keyboard
+pynput
+
+[dev]
+bandit
+black
+isort
+pylint
+pytest
+pytest-cov
+pytest-html
+sphinx
+sphinx-copybutton
