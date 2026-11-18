@@ -572,10 +572,7 @@ def findMeshableGroups():
         for s1 in ss:
             nbrs[s1] |= ss - {s1}
 
-    # ── Détection des shells : opposée + ceinture ─────────────────────────────
-    # Dans un hexaèdre :
-    #   - s0 et s_opp ne partagent aucune courbe  → s_opp ∉ nbrs[s0]
-    #   - les 4 faces de ceinture = nbrs[s0] ∩ nbrs[s_opp]
+    # Shell detection: (opposite + belt)
     surf_set = set(adj)
     shells = set()
 
@@ -602,7 +599,7 @@ def findMeshableGroups():
             if _validate(group):
                 shells.add(group)
 
-    # ── Classification ────────────────────────────────────────────────────────
+    # Classification
     meshable_surfs = set(s for g in shells for s in g)
     meshable = [sorted(g) for g in sorted(shells, key=min)]
     non_meshable = [[s] for s in sorted(surf_set - meshable_surfs)]
@@ -1716,7 +1713,7 @@ def splitSurfaceByCurve(p1, p2, pattern=None):
 
 
 def splitTriangleSurface(s):
-    """split a triangular surface into 4 smaller quadrilaterals by adding midpoints on each edge + creating a central point, then remeshing."""
+    """split a triangular surface into 3 smaller quadrilaterals by adding midpoints on each edge + creating a central point, then remeshing."""
     start10 = time.time()
     midpoint, midpoint_curves = generateQuadrilaterals(s)
     end10 = time.time()
