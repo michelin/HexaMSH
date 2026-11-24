@@ -1,4 +1,8 @@
+import time
+
+start = time.time()
 import gmsh
+
 from hexamsh import hexamshcore
 
 hexamshcore.initializeGmsh()
@@ -19,3 +23,7 @@ hexamshcore.meshCAD(first_mesh=False)
 hexamshcore.writeMesh()
 
 gmsh.finalize()
+
+
+end = time.time()
+print(f"Elapsed time: {end - start:.2f} seconds")
