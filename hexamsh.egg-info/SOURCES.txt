@@ -20,9 +20,6 @@ hexamsh/tests/Epaule/replay.py
 hexamsh/tests/assembly/replay.py
 hexamsh/tests/corner/replay.py
 hexamsh/tests/cube_merge_surfaces/replay.py
-hexamsh/tests/link/replay.py
-hexamsh/tests/patch/replay.py
-hexamsh/tests/pipecreep/replay.py
 hexamsh/tests/pocket/replay.py
 hexamsh/tests/pog/replay.py
 hexamsh/tests/revolution/replay.py
