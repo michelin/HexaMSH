@@ -177,85 +177,55 @@ hexamshcore.addPointOnCurve(284, ratio=0.4)
 hexamshcore.addPointOnCurve(287, ratio=0.4)
 
 # --- addSurface ---
-hexamshcore.addSurfaceByPointLoop([144, 143, 4, 2, 120])
+hexamshcore.splitVolumeByPointLoop([144, 143, 4, 2, 120])
+
+# --- splitVolumeByPointLoop ---
+hexamshcore.splitVolumeByPointLoop([3, 1, 121, 53, 26])
 
 # --- addPointOnCurve ---
 hexamshcore.addPointOnCurve(412, ratio=0.9)
 hexamshcore.addPointOnCurve(409, ratio=0.9)
 
 # --- splitVolumeByPointLoop ---
-hexamshcore.splitVolumeByPointLoop([121, 1, 3, 145, 146])
+hexamshcore.splitVolumeByPointLoop([3, 1, 121, 146, 145])
 
-# --- splitVolumeByPointLoop ---
-hexamshcore.splitVolumeByPointLoop([121, 1, 3, 26, 53])
-
-gmsh.finalize()
-
-end = time.time()
-print(f"Elapsed time: {end - start:.2f} seconds")
 # --- addPointOnCurve ---
-hexamshcore.addPointOnCurve(305, ratio=0.6)
-hexamshcore.addPointOnCurve(303, ratio=0.6)
+hexamshcore.addPointOnCurve(305, ratio=0.7)
+hexamshcore.addPointOnCurve(303, ratio=0.7)
 
 # --- splitVolumeByPointLoop ---
-hexamshcore.splitVolumeByPointLoop([147, 145, 146, 148])
+hexamshcore.splitVolumeByPointLoop([147, 148, 146, 145])
+
+# --- addPointOnCurve ---
+hexamshcore.addPointOnCurve(13, ratio=0.8)
+hexamshcore.addPointOnCurve(11, ratio=0.8)
+hexamshcore.addPointOnCurve(318, ratio=0.8)
+hexamshcore.addPointOnCurve(410, ratio=0.8)
+hexamshcore.addPointOnCurve(411, ratio=0.8)
+
+# --- splitVolumeByPointLoop ---
+hexamshcore.splitVolumeByPointLoop([149, 150, 151, 152, 153])
+
+# --- splitVolumeByPointLoop ---
+hexamshcore.splitVolumeByPointLoop([150, 151, 117, 12])
 
 # --- splitVolumeBy3Points ---
 hexamshcore.splitVolumeBy3Points(6, 2, 9)
 
 # --- removeSurface ---
-hexamshcore.removeSurfaces([489])
-
-# --- removeSurface ---
-hexamshcore.removeSurfaces([334])
-
-# --- addSurface ---
-hexamshcore.addSurfaceByCurveLoop([419, 589, 3, 436])
-
-# --- removeSurface ---
-hexamshcore.removeSurfaces([335])
-
-# --- addSurface ---
-hexamshcore.addSurfaceByCurveLoop([421, 437, 316, 587])
-
-# --- addSurface ---
-hexamshcore.addSurfaceByCurveLoop([420, 587, 315, 413])
-
-# --- addPointOnCurve ---
-hexamshcore.addPointOnCurve(411, ratio=0.7)
-hexamshcore.addPointOnCurve(585, ratio=0.7)
-hexamshcore.addPointOnCurve(410, ratio=0.7)
-hexamshcore.addPointOnCurve(13, ratio=0.7)
-hexamshcore.addPointOnCurve(11, ratio=0.7)
-hexamshcore.addPointOnCurve(318, ratio=0.7)
-
-# --- splitVolumeByPointLoop ---
-hexamshcore.splitVolumeByPointLoop([189, 190, 191, 194, 193, 192])
-
-# --- splitVolumeByPointLoop ---
-hexamshcore.splitVolumeByPointLoop([193, 194, 117, 12])
-
-# --- removeSurface ---
-hexamshcore.removeSurfaces([398])
-
-# --- addSurface ---
-hexamshcore.addSurfaceByCurveLoop([522, 526, 525, 418])
-
-# --- addSurface ---
-hexamshcore.addSurfaceByCurveLoop([418, 589, 5, 414])
+hexamshcore.removeSurfaces([516])
 
 # --- meshCAD ---
 hexamshcore.initializeMesh()
 
 # --- setNumberOfNodesOnEdge ---
-hexamshcore.setNumberOfNodesOnEdge(432, 3)
-hexamshcore.setNumberOfNodesOnEdge(619, 3)
-hexamshcore.setNumberOfNodesOnEdge(29, 3)
-hexamshcore.setNumberOfNodesOnEdge(456, 3)
-hexamshcore.setNumberOfNodesOnEdge(458, 3)
-hexamshcore.setNumberOfNodesOnEdge(58, 3)
+hexamshcore.setNumberOfNodesOnEdge(496, 3)
+hexamshcore.setNumberOfNodesOnEdge(494, 3)
+hexamshcore.setNumberOfNodesOnEdge(343, 3)
+hexamshcore.setNumberOfNodesOnEdge(128, 3)
 hexamshcore.setNumberOfNodesOnEdge(60, 3)
-hexamshcore.setNumberOfNodesOnEdge(283, 3)
+hexamshcore.setNumberOfNodesOnEdge(470, 3)
+hexamshcore.setNumberOfNodesOnEdge(439, 3)
 
 
 # --- finally mesh ---
@@ -263,3 +233,7 @@ hexamshcore.meshCAD(first_mesh=False)
 hexamshcore.writeMesh()
 
 gmsh.finalize()
+
+end = time.time()
+
+print(f"Time elapsed: {end-start}s.")
