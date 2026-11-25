@@ -11,11 +11,6 @@ from pathlib import Path
 
 import gmsh
 
-# ========================
-# CONFIG
-# ========================
-NODE_TOL = 1e-3
-
 
 # ========================
 # UTILS
@@ -44,32 +39,6 @@ def load_mesh(filename):
             )
 
     return nodes, elements
-
-
-def dist(p1, p2):
-    return math.sqrt(sum((a - b) ** 2 for a, b in zip(p1, p2)))
-
-
-def match_nodes(nodes1, nodes2, tol):
-    """Map node tags in the second mesh to geometrically matching tags in the first."""
-    if len(nodes1) != len(nodes2):
-        print(f"[DIFF] nodes count: {len(nodes1)} vs {len(nodes2)}")
-        return None
-
-    unmatched = sorted((point, tag) for tag, point in nodes2.items())
-    node_map = {}
-
-    for tag1, point1 in sorted(nodes1.items(), key=lambda item: item[1]):
-        for match_index, (point2, tag2) in enumerate(unmatched):
-            if dist(point1, point2) < tol:
-                node_map[tag2] = tag1
-                unmatched.pop(match_index)
-                break
-        else:
-            print(f"[DIFF] node not found: {point1}")
-            return None
-
-    return node_map
 
 
 def compare_elements(elems1, elems2, node_map):
@@ -111,9 +80,6 @@ def compare_meshes(file_a: Path, file_b: Path) -> bool:
     nodes1, elems1 = load_mesh(file_a)
     nodes2, elems2 = load_mesh(file_b)
 
-    node_map = match_nodes(nodes1, nodes2, NODE_TOL)
-    if node_map is None:
-        return False
     return compare_elements(elems1, elems2, node_map)
 
 
