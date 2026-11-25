@@ -10,10 +10,9 @@ It is built on top of the Gmsh Python API and GUI.
 ## Getting started
 
 For now, HexaMSH is not available through PyPI.
+Install HexaMSH from [PyPI](https://pypi.org/project/hexamsh/):
 
-Please git clone the github project and locally install
-
-`pip install .`
+`pip install hexamsh`
 
 You can start by playing the three tutorials available here:
 

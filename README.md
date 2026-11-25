@@ -6,19 +6,21 @@ It is based on the python API of gmsh and its GUI.
 
 📖 Documentation: <https://opensource.michelin.io/HexaMSH/>
 
-![Generated hexahedral mesh of Workpiece 2](docs/images/hexamsh.png)
+📦 PyPI: <https://pypi.org/project/hexamsh/>
 
-> **License notice:** Users of HexaMSH must comply with the BSD-3-Clause license for the HexaMSH layer ([LICENSE](LICENSE)) and the GNU GPL v2-or-later license for Gmsh ([license terms](https://gmsh.info/LICENSE.txt)).
+![Generated hexahedral mesh of Workpiece 2](https://raw.githubusercontent.com/michelin/HexaMSH/main/docs/images/hexamsh.png)
+
+> **License notice:** Users of HexaMSH must comply with the BSD-3-Clause license for the HexaMSH layer ([LICENSE](https://github.com/michelin/HexaMSH/blob/main/LICENSE)) and the GNU GPL v2-or-later license for Gmsh ([license terms](https://gmsh.info/LICENSE.txt)).
 
 ## Getting started
 
-For now, HexaMSH is not available through PyPI.
+Install HexaMSH from PyPI (Python 3.12 required):
 
-Please git clone the github project and locally install
+`pip install hexamsh`
 
-`pip install .`
+To work from source instead, git clone the github project and run `pip install .` from its root.
 
-and then execute
+Then execute
 
 `hexamsh my_cad.stp`
 
@@ -28,6 +30,6 @@ Please work with only one CAD file per directory, otherwise HexaMSH will complai
 
 ## Contributing
 
-Contributions are welcome. Please read the [Contributing Guide](CONTRIBUTING.md) before
+Contributions are welcome. Please read the [Contributing Guide](https://github.com/michelin/HexaMSH/blob/main/CONTRIBUTING.md) before
 opening an issue or submitting a pull request. All contributors are expected to follow
-the [Code of Conduct](CODE_OF_CONDUCT.md).
+the [Code of Conduct](https://github.com/michelin/HexaMSH/blob/main/CODE_OF_CONDUCT.md).
