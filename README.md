@@ -4,6 +4,8 @@ HexaMSH is a python library to generate structured hexahedral meshes for Finite 
 
 It is based on the python API of gmsh and its GUI.
 
+📖 Documentation: <https://opensource.michelin.io/HexaMSH/>
+
 ![Generated hexahedral mesh of Workpiece 2](docs/images/hexamsh.png)
 
 > **License notice:** Users of HexaMSH must comply with the BSD-3-Clause license for the HexaMSH layer ([LICENSE](LICENSE)) and the GNU GPL v2-or-later license for Gmsh ([license terms](https://gmsh.info/LICENSE.txt)).
