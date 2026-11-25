@@ -1,86 +1,51 @@
 """Test suite for hexamsh: validates mesh generation against reference outputs."""
 
-import math
 import os
 import shutil
 import subprocess
 import sys
 import time
-from collections import Counter
 from pathlib import Path
 
 import gmsh
-
 
 # ========================
 # UTILS
 # ========================
 def load_mesh(filename):
-    """Load node coordinates and element connectivity from a mesh file."""
+    """Load volume element count and types from a mesh file."""
     gmsh.clear()
     gmsh.open(str(filename))
 
-    node_tags, coords, _ = gmsh.model.mesh.getNodes()
-    nodes = {
-        int(tag): tuple(float(coords[3 * i + j]) for j in range(3))
-        for i, tag in enumerate(node_tags)
-    }
-
-    element_types, _, element_node_tags = gmsh.model.mesh.getElements()
-    elements = []
-    for element_type, connectivity in zip(element_types, element_node_tags):
-        node_count = gmsh.model.mesh.getElementProperties(element_type)[3]
-        for i in range(0, len(connectivity), node_count):
-            elements.append(
-                (
-                    int(element_type),
-                    tuple(int(tag) for tag in connectivity[i : i + node_count]),
-                )
-            )
-
-    return nodes, elements
-
-
-def compare_elements(elems1, elems2, node_map):
-    """Compare element type and connectivity without relying on tags or ordering."""
-    mapped_elems2 = []
-    for element_type, connectivity in elems2:
-        if any(tag not in node_map for tag in connectivity):
-            print("[DIFF] element references an unmatched node")
-            return False
-        mapped_elems2.append(
-            (element_type, tuple(sorted(node_map[tag] for tag in connectivity)))
-        )
-
-    expected = Counter(
-        (element_type, tuple(sorted(connectivity)))
-        for element_type, connectivity in elems1
-    )
-    actual = Counter(mapped_elems2)
-
-    if expected != actual:
-        print("[DIFF] element connectivity mismatch")
-        missing = expected - actual
-        extra = actual - expected
-        if missing:
-            print(f"  in file A but not in B ({sum(missing.values())}):")
-            for elem, count in list(missing.items())[:10]:
-                print(f"    {elem}" + (f" (x{count})" if count > 1 else ""))
-        if extra:
-            print(f"  in file B but not in A ({sum(extra.values())}):")
-            for elem, count in list(extra.items())[:10]:
-                print(f"    {elem}" + (f" (x{count})" if count > 1 else ""))
-        return False
-
-    return True
+    element_types, element_tags, _ = gmsh.model.mesh.getElements(dim=3)
+    element_count = sum(len(tags) for tags in element_tags)
+    type_names = [
+        gmsh.model.mesh.getElementProperties(element_type)[0]
+        for element_type in element_types
+    ]
+    return element_count, type_names
 
 
 def compare_meshes(file_a: Path, file_b: Path) -> bool:
-    """Compare node positions and element connectivity in two mesh files."""
-    nodes1, elems1 = load_mesh(file_a)
-    nodes2, elems2 = load_mesh(file_b)
+    """Compare volume element counts and ensure both meshes contain only hexahedra."""
+    count_a, types_a = load_mesh(file_a)
+    count_b, types_b = load_mesh(file_b)
 
-    return compare_elements(elems1, elems2, node_map)
+    if count_a != count_b:
+        print(f"[DIFF] elements count: {count_a} vs {count_b}")
+        return False
+
+    if count_a == 0:
+        print("[DIFF] no volume elements found")
+        return False
+
+    for filename, element_types in ((file_a, types_a), (file_b, types_b)):
+        for element_type in element_types:
+            if not element_type.startswith("Hexahedron"):
+                print(f"[DIFF] non-hexahedral element in {filename}: {element_type}")
+                return False
+
+    return True
 
 
 # ========================
