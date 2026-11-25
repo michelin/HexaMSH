@@ -57,13 +57,13 @@ jobs:
           mkdocs-awesome-pages-plugin
       - run: mkdocs build --site-dir site
       - uses: actions/upload-pages-artifact@v3
-        if: startsWith(github.ref, 'refs/tags/')
+        if: github.ref == 'refs/heads/main'
         with:
           path: site
 
   deploy-pages:
     name: Deploy GitHub Pages
-    if: startsWith(github.ref, 'refs/tags/')
+    if: github.ref == 'refs/heads/main'
     needs: docs
     runs-on: ubuntu-latest
     permissions:
