@@ -14,16 +14,20 @@ import gmsh
 # UTILS
 # ========================
 def load_mesh(filename):
-    """Load volume element count and types from a mesh file."""
+    """Load hexahedral volume element count and all volume element types."""
     gmsh.clear()
     gmsh.open(str(filename))
 
     element_types, element_tags, _ = gmsh.model.mesh.getElements(dim=3)
-    element_count = sum(len(tags) for tags in element_tags)
     type_names = [
         gmsh.model.mesh.getElementProperties(element_type)[0]
         for element_type in element_types
     ]
+    element_count = sum(
+        len(tags)
+        for element_type, tags, name in zip(element_types, element_tags, type_names)
+        if name.startswith("Hexahedron")
+    )
     return element_count, type_names
 
 
