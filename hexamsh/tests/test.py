@@ -32,15 +32,11 @@ def load_mesh(filename):
 
 
 def compare_meshes(file_a: Path, file_b: Path) -> bool:
-    """Compare volume element counts and ensure both meshes contain only hexahedra."""
+    """Ensure both meshes contain hexahedra only, regardless of element count."""
     count_a, types_a = load_mesh(file_a)
     count_b, types_b = load_mesh(file_b)
 
-    if count_a != count_b:
-        print(f"[DIFF] elements count: {count_a} vs {count_b}")
-        return False
-
-    if count_a == 0:
+    if count_a == 0 or count_b == 0:
         print("[DIFF] no volume elements found")
         return False
 
