@@ -129,7 +129,7 @@ The CAD is split by an infinite plane:
 Project an upper point onto the lower edge to create the partition around the fillet:
 
 <figure markdown="span">
-![tuto_1_projection_point_2](../images/tuto_1_projection_point_3.png){width="400"}
+![tuto_1_projection_point_3](../images/tuto_1_projection_point_3.png){width="400"}
 </figure>
 
 This creates three points that define a new infinite plane:
