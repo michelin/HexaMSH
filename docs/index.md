@@ -48,7 +48,7 @@ HexaMSH aims at partitioning a geometry into sub-volumes. The geometry editing f
 At startup, the initial CAD is composed of one volume bounded by multiple surfaces:
 
 <figure markdown="span">
-![OneVolume](../images/NotMeshableVolume.jpg){width="300"}
+![OneVolume](images/NotMeshableVolume.jpg){width="300"}
 </figure>
 
 All surfaces appear orange, as not meshable with the transfinite method provided by Gmsh. Thanks to the different geometry features, the user can split the volume into sub-volumes.
@@ -56,19 +56,19 @@ All surfaces appear orange, as not meshable with the transfinite method provided
 While a sub-volume is composed by 6 surfaces, Gmsh is able to mesh according to the transfinite method. That volume appears green in the GUI:
 
 <figure markdown="span">
-![OneVolume](../images/MeshableVolume.jpg){width="300"}
+![OneVolume](images/MeshableVolume.jpg){width="300"}
 </figure>
 
 The target is to partition the geometry into multiple sub-volumes with 6 surfaces:
 
 <figure markdown="span">
-![OneVolume](../images/MeshableVolumes.jpg){width="300"}
+![OneVolume](images/MeshableVolumes.jpg){width="300"}
 </figure>
 
 When all volumes are green, click **Mesh CAD** to generate a 3D structured hexahedral mesh:
 
 <figure markdown="span">
-![OneVolume](../images/InitialMesh.jpg){width="300"}
+![OneVolume](images/InitialMesh.jpg){width="300"}
 </figure>
 
 By default, all the edges are meshed by the transfinite method with 5 nodes.
