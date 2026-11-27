@@ -2,7 +2,7 @@
 title: HexaMSH introduction
 ---
 
-# HexaMSH 1.0.3
+# HexaMSH
 
 HexaMSH is a Python library and CLI tool to generate structured hexahedral meshes for Finite Element Analysis (FEA).  
 It is built on top of the Gmsh Python API and GUI.
